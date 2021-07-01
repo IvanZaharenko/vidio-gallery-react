@@ -1,21 +1,23 @@
 import React from 'react'
 import ReactDOM  from 'react-dom';
-import './_normalaze.css'
+import { Provider } from "react-redux";
+import { BrowserRouter as Router } from 'react-router-dom'
 
-import Header from './components/header/Header';
-import MainBody from './components/mainBody/MainBody'
+import './assest/style/_normalaze.css'
+import App from "./components/app/App";
+import GalleryService from "./servises/videoApi-servis"
 
-const App = () => {
-  return ( <>
-          <Header/>
-          <MainBody/>
-      </>
-  )
-}
+import store from './store'
+
+const galleryService = new GalleryService;
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <Provider store={store}>
+              <Router>
+                  <App />
+              </Router>
+      </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

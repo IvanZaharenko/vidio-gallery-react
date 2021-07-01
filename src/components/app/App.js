@@ -1,5 +1,14 @@
-import './App.css'
+import Header from "../header/Header";
+import MainBody from "../mainBody/MainBody";
+import React from "react";
 
-import Header from './Header'
+const App = () => {
+    return (<>
+            <Header/>
+            <MainBody/>
+        </>
+    )
+};
 
+export default App;
 
