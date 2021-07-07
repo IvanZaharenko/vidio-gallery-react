@@ -1,36 +1,19 @@
-import './MainBody.css'
 import React from 'react'
-import {useDispatch} from "react-redux";
-import {useState} from 'react'
-import {form} from "../../store/actions";
-import {useSelector} from "react-redux";
+
+import './MainBody.css'
+
 import {Sort} from "./sort/Sort";
+import ListFilms from "./pages/listFilms/ListFilms";
+
+
+
 
 const MainBody = () => {
-    const [value, setValue] = useState('');
-    const dispatch = useDispatch();
 
-    const getTasks = (state) => state.videos;
-    const task = useSelector(getTasks);
-
-    const handle = (event) => {
-        event.preventDefault();
-        dispatch(form(value));
-        console.log(task);
-        setValue('')
-    };
-    const change = ({target}) => {
-        setValue(target.value)
-    };
-
-    return (
-        <main>
+    return (<>
             <Sort/>
-            <form onSubmit={handle}>
-                <input type="text" onChange={change} value={value}/>
-                <button>+</button>
-            </form>
-        </main>
+            <ListFilms/>
+        </>
     )
 };
 export default MainBody

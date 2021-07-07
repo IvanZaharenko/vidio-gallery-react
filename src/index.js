@@ -5,18 +5,17 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 import './assest/style/_normalaze.css'
 import App from "./components/app/App";
-import GalleryService from "./servises/videoApi-servis"
 import store from "./store/index"
 
 
 
-const galleryService = new GalleryService();
 
 ReactDOM.render(
   <React.StrictMode>
       <Provider store={store}>
               <Router>
-                  <App />
+                  <App
+                  />
               </Router>
       </Provider>
   </React.StrictMode>,

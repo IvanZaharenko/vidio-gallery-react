@@ -2,5 +2,6 @@ main {
     position: relative;
     min-height: calc(100vh - 130px);
     background-color: #323435;
+    z-index: 0;
 }
 
