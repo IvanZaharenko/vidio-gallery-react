@@ -14,10 +14,9 @@ export const Sort = () => {
         dispatch(loadChangeSort(target.value))
     };
 
-
-
     return (
         <select
+            value={typeSort}
             onChange={changeSortClick}
             id="sortForm"
             name="typeSort"

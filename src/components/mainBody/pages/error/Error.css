@@ -1,0 +1,33 @@
+.wrap{
+    margin:0 auto;
+    width:1000px;
+}
+.logoMistake h1{
+    font-size: 200px;
+    color: #f9a81b;
+    text-align: center;
+    text-shadow: 4px 4px 1px white;
+    margin: 0;
+    padding: 100px 0 0 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.logoMistake p{
+    color:#B1A18D;
+    font-size:20px;
+    margin-top:1px;
+    text-align:center;
+}
+.logoMistake p span{
+    color:lightgreen;
+}
+.sub a{
+    color:#ff7a00;
+    text-decoration:none;
+    padding:5px;
+    font-size:13px;
+    font-family: arial, serif;
+    font-weight:bold;
+}

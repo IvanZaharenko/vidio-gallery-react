@@ -1,0 +1,33 @@
+.container_pagination {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pagination {
+    display: flex;
+    margin: 0 auto 20px auto;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    background: #1c1d1c;
+}
+
+.round-effect {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    text-align: center;
+    padding: 10px 15px;
+    color: white;
+    user-select: none
+}
+
+.round-effect:hover {
+    background: #913f09;
+}
+
+.active {
+    background: #e0620d !important;
+}
+

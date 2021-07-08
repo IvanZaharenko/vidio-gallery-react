@@ -1,33 +1,43 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {Route, Switch} from 'react-router-dom'
 
-import GalleryService from "../../servises/videoApi-servis";
 import {changeLoad, loadFilmPage, loadFilms} from "../../store/actions";
 
 import './app.css'
 import Header from "../header/Header";
 import MainBody from "../mainBody/MainBody";
+import AboutFilm from "./../mainBody/pages/aboutFilm/AboutFilm"
+import Login from "../mainBody/pages/login/Login";
+import Error from "../mainBody/pages/error/Error";
 import Spinner from "../spinner/Spinner";
 
 
 const App = () => {
     const dispatch = useDispatch();
-    const {loaded, currentPage, typeSort} = useSelector((state) => state.videos);
-
-   /* const getTypeSort = (state) => state.videos.loaded;
-    const loading = useSelector(loaded);*/
+    const {loaded, currentPage, typeSort, aboutFilm} = useSelector((state) => state.videos);
 
 
     useEffect(() => {
         dispatch(loadFilms({currentPage, typeSort}));
     }, [dispatch]);
 
-
     return (<>
             <Header/>
             <main>
                 <article className='containerHomePage'>
-                    { loaded ? <Spinner/> : <MainBody/> }
+                    <Switch>
+                        <Route path="/" exact>
+                            <MainBody/>
+                        </Route>
+                        <Route path="/description" exact>
+                            {loaded ? <Spinner/> : <AboutFilm store={aboutFilm}/>}
+                        </Route>
+                        <Route path="/login" exact>
+                            <Login/>
+                        </Route>
+                        <Error/>
+                    </Switch>
                 </article>
             </main>
         </>

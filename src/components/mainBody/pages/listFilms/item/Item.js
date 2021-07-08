@@ -1,18 +1,40 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
+
 import './Item.css'
+import plug from './../../../../../assest/image/plug.png'
+import {loadClickDescriptionFilm} from "../../../../../store/actions";
 
 
-const Item = () => {
-    return (
-        <a href="#" className='itemMovie'>
+const Item = (props) => {
+    const dispatch = useDispatch();
+
+
+    const { poster_path, title, vote_average, release_date, id } = props.store;
+    const poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
+
+    const [isHover, setHover] = useState(false);
+
+    const handleClick = ({target}) =>{
+        dispatch(loadClickDescriptionFilm(target.id))
+    };
+       return (
+        <Link to={`/description`}
+              className='itemMovie'
+              id={id}
+              onMouseOver={() => setHover(!isHover)}
+              onMouseOut={() => setHover(!isHover)}
+              onClick={handleClick}
+        >
             <div>
-                <img src="https://image.tmdb.org/t/p/w500/7SivRwOLuA6DR09zNJ9JIo14GyX.jpg" alt="Постер фильма"/>
-                <p className='titleItem'>Название фильма</p>
-                <p className='voteItem'>Рейтинг</p>
-                <p className='releaseItem'>Дата выхода</p>
+                <img src={`${poster_path ? poster : plug}`} alt="Постер фильма"/>
+                <p className='titleItem'>{title}</p>
+                <p className={`${isHover ? 'voteItem visable' : 'voteItem '}`}>{vote_average}</p>
+                <p className={`${isHover ? 'releaseItem visable' : 'releaseItem '}`}>{release_date.split('-').reverse().join('/')}</p>
             </div>
-        </a>
-    )
+        </Link>
+       )
 };
 
 export default Item
