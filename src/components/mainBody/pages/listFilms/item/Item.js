@@ -9,18 +9,16 @@ import {loadClickDescriptionFilm} from "../../../../../store/actions";
 
 const Item = (props) => {
     const dispatch = useDispatch();
-
+    const [isHover, setHover] = useState(false);
 
     const { poster_path, title, vote_average, release_date, id } = props.store;
     const poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
 
-    const [isHover, setHover] = useState(false);
-
-    const handleClick = ({target}) =>{
+    const handleClick = ({target}) => {
         dispatch(loadClickDescriptionFilm(target.id))
     };
-       return (
-        <Link to={`/description`}
+    return (
+        <Link to={`/description/${id}`}
               className='itemMovie'
               id={id}
               onMouseOver={() => setHover(!isHover)}
@@ -30,11 +28,11 @@ const Item = (props) => {
             <div>
                 <img src={`${poster_path ? poster : plug}`} alt="Постер фильма"/>
                 <p className='titleItem'>{title}</p>
-                <p className={`${isHover ? 'voteItem visable' : 'voteItem '}`}>{vote_average}</p>
-                <p className={`${isHover ? 'releaseItem visable' : 'releaseItem '}`}>{release_date.split('-').reverse().join('/')}</p>
+                <p className={`${isHover ? 'voteItem visable' : 'voteItem '}`}>{vote_average ? vote_average : 0}</p>
+                <p className={`${isHover ? 'releaseItem visable' : 'releaseItem '}`}>{release_date ? release_date.split('-').reverse().join('/') : null}</p>
             </div>
         </Link>
-       )
+    )
 };
 
 export default Item

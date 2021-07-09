@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, useParams} from 'react-router-dom'
 
 import {changeLoad, loadFilmPage, loadFilms} from "../../store/actions";
 
@@ -15,7 +15,7 @@ import Spinner from "../spinner/Spinner";
 
 const App = () => {
     const dispatch = useDispatch();
-    const {loaded, currentPage, typeSort, aboutFilm} = useSelector((state) => state.videos);
+    const {loaded, currentPage, typeSort, aboutFilm, apiError} = useSelector((state) => state.videos);
 
 
     useEffect(() => {
@@ -27,16 +27,23 @@ const App = () => {
             <main>
                 <article className='containerHomePage'>
                     <Switch>
-                        <Route path="/" exact>
-                            <MainBody/>
+
+                        <Route path="/" exact >
+                            <MainBody />
                         </Route>
-                        <Route path="/description" exact>
-                            {loaded ? <Spinner/> : <AboutFilm store={aboutFilm}/>}
+
+                        <Route path="/description/:filmId" exact render={() => {
+                           return apiError ? <Error/> : loaded ? <Spinner/> : <AboutFilm store={aboutFilm}/>
+                        }}>
+
                         </Route>
+
                         <Route path="/login" exact>
                             <Login/>
                         </Route>
+
                         <Error/>
+
                     </Switch>
                 </article>
             </main>

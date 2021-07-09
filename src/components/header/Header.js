@@ -16,7 +16,7 @@ const Header = () => {
                 />
             </Link>
             <Link
-                to="login"
+                to="/login"
                 className="double-border-button">
                 Sign In / Sign Up
             </Link>

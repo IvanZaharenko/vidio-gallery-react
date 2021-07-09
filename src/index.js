@@ -8,8 +8,6 @@ import App from "./components/app/App";
 import store from "./store/index"
 
 
-
-
 ReactDOM.render(
   <React.StrictMode>
       <Provider store={store}>

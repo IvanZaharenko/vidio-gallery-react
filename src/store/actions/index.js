@@ -3,8 +3,10 @@ import {
     ABOUT_FILM_LOADED,
     CHANGE_SORT,
     CHANGE_LOAD,
-    CHANGE_CURRENT_PAGE
+    CHANGE_CURRENT_PAGE,
+    API_ERROR, USER_COME_IN
 } from "../constans";
+
 import GalleryService from "./../../servises/videoApi-servis"
 
 export const loadFilmPage = (value) => ({
@@ -30,6 +32,16 @@ export const changeSort = value => ({
 export const changeLoad = (value) => ({
     type: CHANGE_LOAD,
     payload: value
+});
+
+export const apiError = (value) => ({
+    type: API_ERROR,
+    payload: value
+});
+
+export const userComeIn = value => ({
+    type: USER_COME_IN,
+    payloadL: value
 });
 
 export const loadFilms = (value) => (dispatch) => {
@@ -62,8 +74,11 @@ export const loadChangeCurrentPage = (value) => (dispatch) => {
 
 export const loadClickDescriptionFilm = (value) => (dispatch) => {
     dispatch(changeLoad(true));
-
     GalleryService.getMovie(value)
         .then((data) => dispatch(loadedDescriptionFilm(data)))
         .then(() => dispatch(changeLoad(false)))
+       /* .catch(() => {
+            dispatch(apiError(true));
+            dispatch(changeLoad(false));
+        })*/
 };

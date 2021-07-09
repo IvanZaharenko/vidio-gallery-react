@@ -8,12 +8,11 @@ import {Pagination} from "../../pagination/pagination";
 const ListFilms = () => {
     const {dataFilmPage, loaded} = useSelector((state) => state.videos);
 
-    const listFilms =  dataFilmPage.map(itemFilm => (
-
-            <Item
-                store={itemFilm}
-                key={itemFilm.id}
-            />
+    const listFilms = dataFilmPage.map(itemFilm => (
+        <Item
+            store={itemFilm}
+            key={itemFilm.id}
+        />
     ));
 
     return (<>
