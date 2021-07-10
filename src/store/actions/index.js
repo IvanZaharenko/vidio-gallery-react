@@ -4,7 +4,9 @@ import {
     CHANGE_SORT,
     CHANGE_LOAD,
     CHANGE_CURRENT_PAGE,
-    API_ERROR, USER_COME_IN
+    API_ERROR,
+    USER_COME_IN,
+    ADMIN_COME_IN, DELETE_FILM
 } from "../constans";
 
 import GalleryService from "./../../servises/videoApi-servis"
@@ -41,7 +43,17 @@ export const apiError = (value) => ({
 
 export const userComeIn = value => ({
     type: USER_COME_IN,
-    payloadL: value
+    payload: value
+});
+
+export const adminComeIn = value => ({
+    type: ADMIN_COME_IN,
+    payload: value
+});
+
+export const deleteFilm = value => ({
+    type: DELETE_FILM,
+    payload: value
 });
 
 export const loadFilms = (value) => (dispatch) => {
@@ -74,6 +86,7 @@ export const loadChangeCurrentPage = (value) => (dispatch) => {
 
 export const loadClickDescriptionFilm = (value) => (dispatch) => {
     dispatch(changeLoad(true));
+
     GalleryService.getMovie(value)
         .then((data) => dispatch(loadedDescriptionFilm(data)))
         .then(() => dispatch(changeLoad(false)))

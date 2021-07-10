@@ -1,16 +1,14 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useFormik} from "formik";
 import './Login.css'
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {} from "../../../../store/actions";
-import {userComeIn} from "../../../../store/actions";
+import {adminComeIn, userComeIn} from "../../../../store/actions";
 
 const Login = () => {
     const {basaUser} = useSelector((state) => state.videos);
     const dispatch = useDispatch();
-    const [admin, setAdmin] = useState(false);
-
+    const [authorization, setAuthorization] = useState(false);
 
     const initialValues = {
         comeInEmailForm: '',
@@ -21,6 +19,7 @@ const Login = () => {
     };
     const validate = values => {
         let errors = {};
+
         if (!values.comeInEmailForm) {
             errors.comeInEmailForm = 'Заполните поле'
         } else if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -41,21 +40,26 @@ const Login = () => {
         validate,
     });
 
-
     const handleClick = () => {
-        // if (Object.keys(formik.errors).length !== 0  ) console.log(formik.errors )
-        console.log(basaUser);
+        if (formik.errors.comeInPasswordForm === undefined && formik.errors.comeInEmailForm === undefined) {
+            const user = basaUser.filter(user => user.emailUser === formik.values.comeInEmailForm);
+            if (user.length === 0 || user[0].passwordUser !== Number(formik.values.comeInPasswordForm)) {
+                alert('No  correct value')
 
-
-        if (formik.values.comeInEmailForm === 'admin@tut.by') setAdmin(!admin);
-        dispatch(userComeIn({
-            user: formik.values.comeInEmailForm,
-            password: formik.values.comeInEmailForm,
-            adminMode: admin
-        }))
-
-
+            } else {
+                setAuthorization(true);
+                dispatch(userComeIn(user[0].name));
+                if (user[0].name === 'Admin')   dispatch(adminComeIn(true))
+            }
+        }
     };
+
+  /*  useEffect(() => {
+
+    },[authorization]);*/
+
+
+
 
     return (
         <div className='container_come-in'>
@@ -70,7 +74,7 @@ const Login = () => {
                         <div>
                             <input type="email"
                                    placeholder="Email"
-                                   autoFocus
+
                                    name='comeInEmailForm'
                                    className="DisainPlaceholder form_Style"
                                    onChange={formik.handleChange}
@@ -104,16 +108,15 @@ const Login = () => {
                         </div>
                     </div>
                     <div className='control_btn'>
-
-                                <button
-                                    type='submit'
-                                    className='form_button_come_in upComeIn'
-                                    onClick={handleClick}
-                                >
-                                    Sign
-                                </button>
-
-
+                        <Link to={authorization ? '/' : '/login'}>
+                            <button
+                                type='submit'
+                                className='form_button_come_in upComeIn'
+                                onClick={handleClick}
+                            >
+                                Sign
+                            </button>
+                        </Link>
                         <button type='button' className='registration'>Registration</button>
                     </div>
                 </form>

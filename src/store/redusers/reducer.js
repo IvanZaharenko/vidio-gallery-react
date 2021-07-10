@@ -1,7 +1,7 @@
 import {
     FILM_LOADED,
     ABOUT_FILM_LOADED,
-    CHANGE_SORT, CHANGE_LOAD, CHANGE_CURRENT_PAGE, API_ERROR, USER_COME_IN
+    CHANGE_SORT, CHANGE_LOAD, CHANGE_CURRENT_PAGE, API_ERROR, USER_COME_IN, ADMIN_COME_IN, DELETE_FILM
 } from "../constans";
 
 const initialState = {
@@ -11,12 +11,12 @@ const initialState = {
     typeSort: 'vote_count.desc',
     dataFilmPage: [],
     aboutFilm: [],
-    adminMode: false,
+    adminMode: true,
+    activUser: null,
     basaUser: [{
-        emailUser: '111@22.33', passwordUser: 1234
+            emailUser: 'zxc@vc.sd', passwordUser: 1234, name: 'Ivan'
     },
-        {emailUser: 'admin@tut.by', passwordUser: 4321}
-    ]
+        {emailUser: 'admin@tut.by', passwordUser: 4321, name: 'Admin'}]
 };
 
 const videoReducer = (state = initialState, action) => {
@@ -27,17 +27,26 @@ const videoReducer = (state = initialState, action) => {
                 dataFilmPage: action.payload
             };
 
-            case CHANGE_CURRENT_PAGE:
+        case CHANGE_CURRENT_PAGE:
             return {
                 ...state,
                 currentPageState: action.payload
             };
-        case USER_COME_IN:
-            return{
+        case DELETE_FILM:
+            return {
                 ...state,
-
+                dataFilmPage: action.payload
             };
-
+        case ADMIN_COME_IN:
+            return {
+                ...state,
+                adminMode: action.payload
+            };
+        case USER_COME_IN:
+            return {
+                ...state,
+                activUser: action.payload
+            };
         case API_ERROR:
             return {
                 ...state,
@@ -57,7 +66,7 @@ const videoReducer = (state = initialState, action) => {
         case CHANGE_LOAD:
             return {
                 ...state,
-                loaded:  action.payload
+                loaded: action.payload
             };
         default:
             return state;

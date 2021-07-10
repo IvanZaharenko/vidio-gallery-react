@@ -8,9 +8,7 @@ export const Sort = () => {
     const dispatch = useDispatch();
     const {typeSort} = useSelector((state) => state.videos);
 
-
     const changeSortClick = ({target}) => {
-        //dispatch(changeSort(target.value));
         dispatch(loadChangeSort(target.value))
     };
 

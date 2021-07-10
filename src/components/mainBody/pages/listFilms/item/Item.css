@@ -56,5 +56,19 @@
     top: calc(100% + 5px);
 }
 .visable{
-    visibility: unset;
+    visibility: unset !important;
+}
+.deleteFilm {
+    position: absolute;
+    font-size: 43px;
+    margin: 0;
+    color: #f9a81b;
+    top: calc(100% - 40px);
+    left: calc(100% - 34px);
+    width: 35px;
+    height: 41px;
+    visibility: hidden;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

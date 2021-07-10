@@ -4,4 +4,23 @@ main {
     background-color: #323435;
     z-index: 0;
 }
-
+.floating-button {
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    width: 40px;
+    height: 30px;
+    line-height: 30px;
+    margin: 20px 0 0 20px;
+    text-align: center;
+    font-weight: 600;
+    color: white;
+    background-color: #22ae95;
+    transition: 0.3s;
+}
+.floating-button:hover {
+    background: #2EE59D;
+    box-shadow: 0 15px 20px rgba(46, 229, 157, 0.4);
+    color: white;
+    transform: translateY(-7px);
+}
