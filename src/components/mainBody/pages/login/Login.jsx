@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import {useFormik} from "formik";
-import './Login.css'
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {adminComeIn, userComeIn} from "../../../../store/actions";
+
+import './Login.css'
+import {activateAdmin,  userComeIn} from "../../../../store/actions";
 
 const Login = () => {
     const {basaUser} = useSelector((state) => state.videos);
@@ -30,7 +31,7 @@ const Login = () => {
         if (!values.comeInPasswordForm) {
             errors.comeInPasswordForm = 'Заполните поле'
         } else if (values.comeInPasswordForm.length <= 3){
-            errors.comeInPasswordForm = 'Пароль слишком простой'
+            errors.comeInPasswordForm = 'Пароль слишком короткий'
         }
         return errors
     };
@@ -44,24 +45,20 @@ const Login = () => {
         if (formik.errors.comeInPasswordForm === undefined && formik.errors.comeInEmailForm === undefined) {
             const user = basaUser.filter(user => user.emailUser === formik.values.comeInEmailForm);
             if (user.length === 0 || user[0].passwordUser !== Number(formik.values.comeInPasswordForm)) {
-                alert('No  correct value')
-
+                alert('No  correct value');
+                formik.values.comeInPasswordForm='';
+                formik.values.comeInEmailForm=''
             } else {
                 setAuthorization(true);
                 dispatch(userComeIn(user[0].name));
-                if (user[0].name === 'Admin')   dispatch(adminComeIn(true))
+                if (user[0].name === 'Admin')  {
+                    dispatch(activateAdmin(true))
+                }
             }
         }
     };
 
-  /*  useEffect(() => {
-
-    },[authorization]);*/
-
-
-
-
-    return (
+      return (
         <div className='container_come-in'>
             <div className='formWrapper'>
                 <form
@@ -74,9 +71,8 @@ const Login = () => {
                         <div>
                             <input type="email"
                                    placeholder="Email"
-
                                    name='comeInEmailForm'
-                                   className="DisainPlaceholder form_Style"
+                                   className="DisainPlaceholder form_Style_comeIn"
                                    onChange={formik.handleChange}
                                    value={formik.values.comeInEmailForm}
                                    onBlur={formik.handleBlur}
@@ -92,7 +88,7 @@ const Login = () => {
                         <div>
                             <input type="password"
                                    placeholder="Password"
-                                   className="DisainPlaceholder form_Style"
+                                   className="DisainPlaceholder form_Style_comeIn"
                                    name='comeInPasswordForm'
                                    onChange={formik.handleChange}
                                    value={formik.values.comeInPasswordForm}
@@ -117,7 +113,9 @@ const Login = () => {
                                 Sign
                             </button>
                         </Link>
-                        <button type='button' className='registration'>Registration</button>
+                        <Link to='registration'>
+                            <button type='button' className='registration'>Registration</button>
+                        </Link>
                     </div>
                 </form>
             </div>

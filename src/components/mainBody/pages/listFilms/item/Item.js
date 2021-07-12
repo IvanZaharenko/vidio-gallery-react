@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 import './Item.css'
 import plug from './../../../../../assest/image/plug.png'
-import {deleteFilm, loadClickDescriptionFilm} from "../../../../../store/actions";
+import {addIdDeleteFilm, deleteFilm, loadClickDescriptionFilm} from "../../../../../store/actions";
 
 
 const Item = (props) => {
@@ -24,13 +24,13 @@ const Item = (props) => {
 
     const handleClickDelete = (id) => {
         const idx = dataFilmPage.findIndex(el => el.id === id);
-        const delFilm = dataFilmPage[idx];
         let newArr = [
             ...dataFilmPage.slice(0,idx),
             ...dataFilmPage.slice(idx + 1)
         ];
 
-        dispatch(deleteFilm(newArr))
+        dispatch(deleteFilm(newArr));
+        dispatch(addIdDeleteFilm(id))
     };
 
     return (

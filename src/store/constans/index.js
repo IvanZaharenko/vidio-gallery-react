@@ -7,6 +7,9 @@ export const API_ERROR = 'API_ERROR';
 export const USER_COME_IN = 'USER_COME_IN';
 export const ADMIN_COME_IN = 'ADMIN_COME_IN';
 export const DELETE_FILM = 'DELETE_FILM';
+export const ADD_NEW_USER = 'ADD_NEW_USER';
+export const ADD_ID_DELETE_FILM = 'ADD_ID_DELETE_FILM';
+export const GENRE_LOAD = 'GENRE_LOAD';
 
 
 

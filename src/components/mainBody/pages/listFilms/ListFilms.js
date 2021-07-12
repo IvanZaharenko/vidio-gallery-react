@@ -6,18 +6,35 @@ import {Pagination} from "../../pagination/pagination";
 
 
 const ListFilms = () => {
-    const {dataFilmPage, loaded} = useSelector((state) => state.videos);
+    const {dataFilmPage, loaded, dataDelFilm} = useSelector((state) => state.videos);
 
-    const listFilms = dataFilmPage.map(itemFilm => (
-        <Item
-            store={itemFilm}
-            key={itemFilm.id}
-        />
-    ));
+    const actualBasa = dataFilmPage.filter(item => dataDelFilm.map(id => item.id !== id));
+
+   /* const actualBasa = [];
+
+    const x = dataFilmPage.map(item => {
+        for (let i = 0; i <= dataDelFilm.length; i++) {
+            if (dataDelFilm[i] === item.id) continue;
+            return actualBasa.push(item)
+        }
+    });*/
+
+  /*      const idx = dataFilmPage.findIndex(el => el.id === id);
+    let newArr = [
+        ...dataFilmPage.slice(0,idx),
+        ...dataFilmPage.slice(idx + 1)
+    ];*/
 
     return (<>
             <div className='containerListMovie'>
-                {loaded ? null : listFilms}
+                {loaded ?
+                    null :
+                    actualBasa.map(itemFilm => (
+                        <Item
+                            store={itemFilm}
+                            key={itemFilm.id}
+                        />
+                    ))}
             </div>
             <Pagination/>
         </>

@@ -11,6 +11,9 @@ import AboutFilm from "./../mainBody/pages/aboutFilm/AboutFilm"
 import Login from "../mainBody/pages/login/Login";
 import Error from "../mainBody/pages/error/Error";
 import Spinner from "../spinner/Spinner";
+import Registration from "../mainBody/pages/registration/Registration";
+import AddNewFilm from "../mainBody/pages/addNewFilm/AddNewFilm";
+
 
 
 const App = () => {
@@ -40,6 +43,14 @@ const App = () => {
 
                         <Route path="/login" exact>
                             <Login/>
+                        </Route>
+
+                        <Route path="/registration" exact>
+                            <Registration/>
+                        </Route>
+
+                        <Route path="/newFilm" exact>
+                            <AddNewFilm/>
                         </Route>
 
                         <Error/>

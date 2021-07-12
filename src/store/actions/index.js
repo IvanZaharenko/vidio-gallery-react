@@ -6,7 +6,10 @@ import {
     CHANGE_CURRENT_PAGE,
     API_ERROR,
     USER_COME_IN,
-    ADMIN_COME_IN, DELETE_FILM
+    ADMIN_COME_IN,
+    DELETE_FILM,
+    ADD_NEW_USER,
+    ADD_ID_DELETE_FILM, GENRE_LOAD
 } from "../constans";
 
 import GalleryService from "./../../servises/videoApi-servis"
@@ -41,6 +44,11 @@ export const apiError = (value) => ({
     payload: value
 });
 
+export const genreLoad = (value) => ({
+    type: GENRE_LOAD,
+    payload: value
+});
+
 export const userComeIn = value => ({
     type: USER_COME_IN,
     payload: value
@@ -53,6 +61,16 @@ export const adminComeIn = value => ({
 
 export const deleteFilm = value => ({
     type: DELETE_FILM,
+    payload: value
+});
+
+export const addNewUser = value => ({
+    type: ADD_NEW_USER,
+    payload: value
+});
+
+export const addIdDeleteFilm = value => ({
+    type: ADD_ID_DELETE_FILM,
     payload: value
 });
 
@@ -95,3 +113,22 @@ export const loadClickDescriptionFilm = (value) => (dispatch) => {
             dispatch(changeLoad(false));
         })*/
 };
+
+export const registrationNew = (value) => (dispatch) => {
+    dispatch(addNewUser(value));
+    dispatch(userComeIn(value.name))
+};
+
+export const activateAdmin = (value) => (dispatch) => {
+    dispatch(adminComeIn(value));
+
+    GalleryService.getAllGenre()
+        .then((data) => dispatch(genreLoad(data)));
+};
+
+/*
+export const clickDelFilm = (value) => (dispatch) => {
+    dispatch(addIdDeleteFilm(value));
+    dispatch(deleteFilm(value))
+};
+*/
