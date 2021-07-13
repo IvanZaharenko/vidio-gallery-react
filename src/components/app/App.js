@@ -35,8 +35,9 @@ const App = () => {
                             <MainBody />
                         </Route>
 
-                        <Route path="/description/:filmId" exact render={() => {
-                           return apiError ? <Error/> : loaded ? <Spinner/> : <AboutFilm store={aboutFilm}/>
+                        <Route path="/description/:filmId" exact render={({match}) => {
+                            const {filmId} = match.params;
+                           return apiError ? <Error/> : <AboutFilm idFilm={filmId}/>
                         }}>
 
                         </Route>

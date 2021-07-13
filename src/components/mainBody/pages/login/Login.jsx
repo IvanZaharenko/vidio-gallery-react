@@ -44,6 +44,7 @@ const Login = () => {
     const handleClick = () => {
         if (formik.errors.comeInPasswordForm === undefined && formik.errors.comeInEmailForm === undefined) {
             const user = basaUser.filter(user => user.emailUser === formik.values.comeInEmailForm);
+
             if (user.length === 0 || user[0].passwordUser !== Number(formik.values.comeInPasswordForm)) {
                 alert('No  correct value');
                 formik.values.comeInPasswordForm='';
@@ -103,6 +104,7 @@ const Login = () => {
 
                         </div>
                     </div>
+
                     <div className='control_btn'>
                         <Link to={authorization ? '/' : '/login'}>
                             <button

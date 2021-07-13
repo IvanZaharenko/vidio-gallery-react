@@ -39,7 +39,7 @@ export const changeLoad = (value) => ({
     payload: value
 });
 
-export const apiError = (value) => ({
+export const apiErr = (value) => ({
     type: API_ERROR,
     payload: value
 });
@@ -108,10 +108,10 @@ export const loadClickDescriptionFilm = (value) => (dispatch) => {
     GalleryService.getMovie(value)
         .then((data) => dispatch(loadedDescriptionFilm(data)))
         .then(() => dispatch(changeLoad(false)))
-       /* .catch(() => {
-            dispatch(apiError(true));
+        .catch(() => {
+            dispatch(apiErr(true));
             dispatch(changeLoad(false));
-        })*/
+        })
 };
 
 export const registrationNew = (value) => (dispatch) => {
@@ -125,10 +125,3 @@ export const activateAdmin = (value) => (dispatch) => {
     GalleryService.getAllGenre()
         .then((data) => dispatch(genreLoad(data)));
 };
-
-/*
-export const clickDelFilm = (value) => (dispatch) => {
-    dispatch(addIdDeleteFilm(value));
-    dispatch(deleteFilm(value))
-};
-*/

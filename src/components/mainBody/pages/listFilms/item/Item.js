@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 import './Item.css'
 import plug from './../../../../../assest/image/plug.png'
-import {addIdDeleteFilm, deleteFilm, loadClickDescriptionFilm} from "../../../../../store/actions";
+import {addIdDeleteFilm, deleteFilm, loadClickDescriptionFilm, loadFilmPage} from "../../../../../store/actions";
 
 
 const Item = (props) => {
@@ -16,11 +16,11 @@ const Item = (props) => {
     const { poster_path, title, vote_average, release_date, id } = props.store;
     const poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
 
-    const handleClick = (id, e) => {
+   /* const handleClick = (id, e) => {
         if (e.target.nodeName === 'A') {
             return dispatch(loadClickDescriptionFilm(id))
         }
-    };
+    };*/
 
     const handleClickDelete = (id) => {
         const idx = dataFilmPage.findIndex(el => el.id === id);
@@ -29,7 +29,7 @@ const Item = (props) => {
             ...dataFilmPage.slice(idx + 1)
         ];
 
-        dispatch(deleteFilm(newArr));
+        dispatch(loadFilmPage(newArr));
         dispatch(addIdDeleteFilm(id))
     };
 
@@ -39,7 +39,7 @@ const Item = (props) => {
               id={id}
               onMouseOver={() => setHover(!isHover)}
               onMouseOut={() => setHover(!isHover)}
-              onClick={(e) =>  handleClick(id,e)}
+            /*  onClick={(e) =>  handleClick(id,e)}*/
         >
             <div>
                 <img src={`${poster_path ? poster : plug}`} alt="Постер фильма"/>

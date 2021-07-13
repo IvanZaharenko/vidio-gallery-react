@@ -7,13 +7,14 @@ export default class GalleryService {
       }
         return await res.json()
     }
+
     static async getAllGenre(){
       const res = await GalleryService.getRecource('https://api.themoviedb.org/3/genre/movie/list?api_key=dcc9acdebadcf222b7588db1d80573d0&language=ru');
       return res.genres
     }
 
-     static getMovie(id){
-      return GalleryService.getRecource(`https://api.themoviedb.org/3/movie/${id}?api_key=dcc9acdebadcf222b7588db1d80573d0&language=ru`)
+     static async getMovie(id){
+      return await GalleryService.getRecource(`https://api.themoviedb.org/3/movie/${id}?api_key=dcc9acdebadcf222b7588db1d80573d0&language=ru`)
     }
 
    static async getMovieList(page, sort){
@@ -21,14 +22,3 @@ export default class GalleryService {
        return res.results
     }
   }
-
-/*  const movie = new GalleryService();
-
-  movie.getMovieList(1,'popularity.desc')
-  .then((body) => console.log(body));
-
-  movie.getMovie(337404)
-  .then((body) => console.log(body));
-
-  movie.getAllGenre()
-  .then((body) => console.log(body));*/

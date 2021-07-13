@@ -75,9 +75,7 @@ const AddNewFilm = () => {
         if (!values.Popularity) {
             errors.Popularity = 'Заполните поле'
         }
-        if (!values.date) {
-            errors.date = 'Выберете дату'
-        }
+
         if (!values.VoteAverage) {
             errors.VoteAverage = 'Заполните поле'
         }
@@ -207,7 +205,7 @@ const AddNewFilm = () => {
                                     name='VoteCount'
                                     className="DisainPlaceholder form_Style marg20px"
                                     onChange={formik.handleChange}
-                                    value={formik.values.VoteAverage}
+                                    value={formik.values.VoteCount}
                                     onBlur={formik.handleBlur}
                                 />
                                 {formik.touched.VoteCount && formik.errors.VoteCount ?
@@ -215,11 +213,6 @@ const AddNewFilm = () => {
                                     null}
                             </div>
                             {/*
-
-
-
-
-
 
 
                             */}

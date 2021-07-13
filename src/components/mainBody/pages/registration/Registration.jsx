@@ -5,6 +5,7 @@ import {useDispatch} from "react-redux";
 
 import './registration.css'
 import {registrationNew} from "../../../../store/actions";
+import {Link} from "react-router-dom";
 
 const Registration = () => {
     const [registration, setRegistration] = useState(false);
@@ -20,7 +21,6 @@ const Registration = () => {
     };
 
     const onSubmit = (values, {resetForm}) => {
-        setRegistration(true);
 
         const newUser = {
             emailUser: values.registrationEmail,
@@ -39,6 +39,9 @@ const Registration = () => {
             }
         });
         dispatch(registrationNew(newUser));
+
+    };
+    const handleClick = () => {
 
     };
 
@@ -157,12 +160,18 @@ const Registration = () => {
                         </div>
 
                         <div className='control_btn'>
-
+                            {/*<Link to={registration ? '/' : '/registration'}>*/}
                                 <button className='form_button_come_in upRegistrtion'
                                         type='submit'
+                                        onClick={handleClick}
+
                                 >
                                     Sign Up
                                 </button>
+{/*
+                            </Link>
+*/}
+
 
                             <button className='registration'
                                     type='reset'

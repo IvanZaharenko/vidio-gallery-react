@@ -10,6 +10,7 @@ const ListFilms = () => {
 
     const actualBasa = dataFilmPage.filter(item => dataDelFilm.map(id => item.id !== id));
 
+//console.log(actualBasa)
    /* const actualBasa = [];
 
     const x = dataFilmPage.map(item => {

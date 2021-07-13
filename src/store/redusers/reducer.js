@@ -21,7 +21,7 @@ const initialState = {
     dataGenre: [],
     dataDelFilm:[],
     aboutFilm: [],
-    adminMode: true,
+    adminMode: false,
     activUser: null,
     basaUser: [
         {emailUser: 'zxc@vc.sd', passwordUser: 1234, name: 'Ivan', surname: ''},
