@@ -1,27 +1,25 @@
-import React, { useState} from 'react'
+import React from 'react'
+import {useDispatch} from "react-redux";
+import {useHistory} from "react-router-dom";
 import {Form, Formik, Field, ErrorMessage} from "formik";
 import * as Yup from 'yup'
-import {useDispatch} from "react-redux";
+
 
 import './registration.css'
 import {registrationNew} from "../../../../store/actions";
-import {Link} from "react-router-dom";
 
 const Registration = () => {
-    const [registration, setRegistration] = useState(false);
+    const history = useHistory();
     const dispatch = useDispatch();
 
-
     const initialValues = {
-        registrationName: '2',
-        registrationSurName: '2',
-        registrationPassword: '2222',
-        registrationConfirmPassword: '2222',
-        registrationEmail: '22@22.ff',
+        registrationName: '',
+        registrationSurName: '',
+        registrationPassword: '',
+        registrationConfirmPassword: '',
+        registrationEmail: '',
     };
-
     const onSubmit = (values, {resetForm}) => {
-
         const newUser = {
             emailUser: values.registrationEmail,
             passwordUser: values.registrationPassword,
@@ -39,19 +37,15 @@ const Registration = () => {
             }
         });
         dispatch(registrationNew(newUser));
-
+        history.push('/');
     };
-    const handleClick = () => {
-
-    };
-
     const validationSchema = Yup.object({
         registrationName: Yup.string()
             .required('Заполните поле'),
         registrationSurName: Yup.string()
             .required('Заполните поле'),
         registrationPassword: Yup.string()
-            .test('len', 'Более 4 символов', val => val.length === 4)
+            .min(4, 'Более 4 символов')
             .required('Заполните поле'),
         registrationConfirmPassword: Yup.string()
             .oneOf([Yup.ref('registrationPassword'), ''], 'Пароли не совпадают')
@@ -85,12 +79,10 @@ const Registration = () => {
                                     name='registrationName'
                                     className="DisainPlaceholder form_Style"
                                 />
-
                                 <ErrorMessage name='registrationName'>
                                     {errorMsg => <div className={'errReg'}> {errorMsg}</div>}
                                 </ErrorMessage>
                             </div>
-
                             <div>
                                 <label
                                     className='controlLabel'
@@ -107,7 +99,6 @@ const Registration = () => {
                                 </ErrorMessage>
 
                             </div>
-
                             <div>
                                 <label
                                     className='controlLabel'
@@ -124,7 +115,6 @@ const Registration = () => {
                                 </ErrorMessage>
 
                             </div>
-
                             <div>
                                 <label
                                     className='controlLabel'
@@ -139,9 +129,7 @@ const Registration = () => {
                                 <ErrorMessage name='registrationConfirmPassword'>
                                     {errorMsg => <div className={'errReg'}> {errorMsg}</div>}
                                 </ErrorMessage>
-
                             </div>
-
                             <div>
                                 <label
                                     className='controlLabel'
@@ -158,21 +146,12 @@ const Registration = () => {
                                 </ErrorMessage>
                             </div>
                         </div>
-
                         <div className='control_btn'>
-                            {/*<Link to={registration ? '/' : '/registration'}>*/}
-                                <button className='form_button_come_in upRegistrtion'
-                                        type='submit'
-                                        onClick={handleClick}
-
-                                >
-                                    Sign Up
-                                </button>
-{/*
-                            </Link>
-*/}
-
-
+                            <button className='form_button_come_in upRegistrtion'
+                                    type='submit'
+                            >
+                                Sign Up
+                            </button>
                             <button className='registration'
                                     type='reset'
                             >

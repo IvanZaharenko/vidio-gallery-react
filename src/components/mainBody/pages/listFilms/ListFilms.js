@@ -6,31 +6,22 @@ import {Pagination} from "../../pagination/pagination";
 
 
 const ListFilms = () => {
-    const {dataFilmPage, loaded, dataDelFilm} = useSelector((state) => state.videos);
+    const {dataFilmPage, loaded, dataDelFilm, dataNewFilm, currentPageState, typeSort} = useSelector((state) => state.videos);
 
-    const actualBasa = dataFilmPage.filter(item => dataDelFilm.map(id => item.id !== id));
+    const createActualBasa = (dataFilm, dataDel, dataNew) => {
+        if (dataNew.length > 0 && currentPageState === 1 && typeSort === 'vote_count.desc') {
+            const basa = dataFilm.filter(item => !dataDel.includes(item.id));
 
-//console.log(actualBasa)
-   /* const actualBasa = [];
+            return [...dataNew, ...basa.slice(0, -dataNew.length)]
 
-    const x = dataFilmPage.map(item => {
-        for (let i = 0; i <= dataDelFilm.length; i++) {
-            if (dataDelFilm[i] === item.id) continue;
-            return actualBasa.push(item)
-        }
-    });*/
-
-  /*      const idx = dataFilmPage.findIndex(el => el.id === id);
-    let newArr = [
-        ...dataFilmPage.slice(0,idx),
-        ...dataFilmPage.slice(idx + 1)
-    ];*/
+        } else return dataFilm.filter(item => !dataDel.includes(item.id))
+    };
 
     return (<>
             <div className='containerListMovie'>
                 {loaded ?
                     null :
-                    actualBasa.map(itemFilm => (
+                    createActualBasa(dataFilmPage, dataDelFilm, dataNewFilm).map(itemFilm => (
                         <Item
                             store={itemFilm}
                             key={itemFilm.id}

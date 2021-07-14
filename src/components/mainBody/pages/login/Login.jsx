@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useFormik} from "formik";
-import {Link} from "react-router-dom";
+import {useHistory, Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
 import './Login.css'
@@ -9,6 +9,7 @@ import {activateAdmin,  userComeIn} from "../../../../store/actions";
 const Login = () => {
     const {basaUser} = useSelector((state) => state.videos);
     const dispatch = useDispatch();
+    const history = useHistory();
     const [authorization, setAuthorization] = useState(false);
 
     const initialValues = {
@@ -27,7 +28,6 @@ const Login = () => {
             .test(values.comeInEmailForm)){
             errors.comeInEmailForm = 'Нверный формат поля'
         }
-
         if (!values.comeInPasswordForm) {
             errors.comeInPasswordForm = 'Заполните поле'
         } else if (values.comeInPasswordForm.length <= 3){
@@ -35,6 +35,7 @@ const Login = () => {
         }
         return errors
     };
+
     const formik = useFormik({
         initialValues,
         onSubmit,
@@ -52,6 +53,7 @@ const Login = () => {
             } else {
                 setAuthorization(true);
                 dispatch(userComeIn(user[0].name));
+                history.push('/');
                 if (user[0].name === 'Admin')  {
                     dispatch(activateAdmin(true))
                 }
@@ -106,7 +108,6 @@ const Login = () => {
                     </div>
 
                     <div className='control_btn'>
-                        <Link to={authorization ? '/' : '/login'}>
                             <button
                                 type='submit'
                                 className='form_button_come_in upComeIn'
@@ -114,7 +115,6 @@ const Login = () => {
                             >
                                 Sign
                             </button>
-                        </Link>
                         <Link to='registration'>
                             <button type='button' className='registration'>Registration</button>
                         </Link>

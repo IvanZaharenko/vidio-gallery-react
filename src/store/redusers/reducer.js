@@ -9,7 +9,9 @@ import {
     ADMIN_COME_IN,
     DELETE_FILM,
     ADD_NEW_USER,
-    ADD_ID_DELETE_FILM, GENRE_LOAD
+    ADD_ID_DELETE_FILM,
+    GENRE_LOAD,
+    ADD_NEW_FILM
 } from "../constans";
 
 const initialState = {
@@ -20,8 +22,9 @@ const initialState = {
     dataFilmPage: [],
     dataGenre: [],
     dataDelFilm:[],
+    dataNewFilm:[{},{}],
     aboutFilm: [],
-    adminMode: false,
+    adminMode: true,
     activUser: null,
     basaUser: [
         {emailUser: 'zxc@vc.sd', passwordUser: 1234, name: 'Ivan', surname: ''},
@@ -48,6 +51,12 @@ const videoReducer = (state = initialState, action) => {
             return {
                 ...state,
                 dataDelFilm: [...state.dataDelFilm, action.payload]
+            };
+
+        case ADD_NEW_FILM:
+            return {
+                ...state,
+                dataNewFilm: [...state.dataNewFilm, action.payload]
             };
 
         case GENRE_LOAD:

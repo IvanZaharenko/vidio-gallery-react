@@ -1,42 +1,71 @@
 import React, { useState} from 'react'
 import {Form, useFormik, Field, ErrorMessage} from "formik";
-import * as Yup from 'yup'
+import {useHistory} from "react-router-dom";
+import {nanoid} from "nanoid";
 import {useDispatch, useSelector} from "react-redux";
 
-
 import './addNewFilm.css'
-import {registrationNew} from "../../../../store/actions";
+import {activateAdmin, addNewFilm, registrationNew, userComeIn} from "../../../../store/actions";
 
 
 const AddNewFilm = () => {
-    const [registration, setRegistration] = useState(false);
     const dispatch = useDispatch();
+    const history = useHistory();
+
     const {dataGenre} = useSelector((state) => state.videos);
 
 
-
     const initialValues = {
-        title: '',
-        overview: '',
-        Popularity: '',
+        title: '123',
+        overview: '123456',
+        Popularity: '3',
         date: '',
-        VoteAverage: '',
-        VoteCount: '',
+        genre: '',
+        VoteAverage: '4',
+        VoteCount: '5',
+    };
+
+    const handleClick = () => {
+        if (formik.errors.title === undefined &&
+            formik.errors.overview === undefined &&
+            formik.errors.Popularity === undefined &&
+            formik.errors.VoteAverage === undefined &&
+            formik.errors.VoteCount === undefined) {
+
+            const newFilm = {
+                id: nanoid(5),
+                poster_path: null,
+                title: formik.values.title,
+                overview: formik.values.overview,
+                popularity: Number(formik.values.Popularity),
+                release_date: formik.values.date,
+                genre: [],
+                vote_average: Number(formik.values.VoteAverage),
+                vote_count: Number(formik.values.VoteCount),
+            }
+            dispatch(addNewFilm(newFilm));
+            history.push('/');
+
+            console.log(newFilm)
+        } else alert('No  correct value');
+
+
+
+        /*
+
+   /*  else {
+             dispatch(userComeIn(user[0].name));
+             if (user[0].name === 'Admin')  {
+                 dispatch(activateAdmin(true))
+             }
+         }*/
+
+
     };
 
     const onSubmit = (values, {resetForm}) => {
-        setRegistration(true);
 
-        resetForm({
-            values: {
-                title: '',
-                Overview: '',
-                Popularity: '',
-                date: '',
-                VoteAverage: '',
-                VoteCount: '',
-            }
-        });
+
     };
 
    /* const validationSchema = Yup.object({
@@ -63,17 +92,22 @@ const AddNewFilm = () => {
 
         if (!values.title) {
             errors.title = 'Заполните поле'
-        } else if(values.title.length <=3) {
+        } else if(values.title.length < 3) {
             errors.title = 'Не менее 3 символов'
         }
 
         if (!values.overview) {
             errors.overview = 'Заполните поле'
-        } else if(values.overview.length <=6) {
+        } else if(values.overview.length <6) {
             errors.overview = 'Не менее 6 символов'
         }
+
         if (!values.Popularity) {
             errors.Popularity = 'Заполните поле'
+        }
+
+        if (!values.genre) {
+            errors.genre = 'Заполните поле'
         }
 
         if (!values.VoteAverage) {
@@ -83,11 +117,6 @@ const AddNewFilm = () => {
             errors.VoteCount = 'Заполните поле'
         }
 
-      /*  if (!values.comeInPasswordForm) {
-            errors.comeInPasswordForm = 'Заполните поле'
-        } else if (values.comeInPasswordForm.length <= 3){
-            errors.comeInPasswordForm = 'Пароль слишком короткий'
-        }*/
         return errors
     };
     const formik = useFormik({
@@ -158,18 +187,16 @@ const AddNewFilm = () => {
                                     className="DisainPlaceholder form_Style marg20px"
 
                                 />
-                                {formik.touched.date && formik.errors.date ?
-                                    <div className='err'>{formik.errors.date} </div> :
-                                    null}
+
                             </div>
 
                             <div>
                                 <select
-                                    name='date'
+                                    name='genre'
                                     className="addGenres"
                                     multiple
                                     size="1"
-                                    required
+
                                 >
                                     {
                                         dataGenre.map((genre) => {
@@ -181,6 +208,9 @@ const AddNewFilm = () => {
                                         })
                                     }
                                 </select>
+                                {formik.touched.genre && formik.errors.genre ?
+                                    <div className='err'>{formik.errors.date} </div> :
+                                    null}
                             </div>
 
                             <div>
@@ -222,6 +252,7 @@ const AddNewFilm = () => {
 
                             <button className='form_button_come_in upRegistrtion'
                                     type='submit'
+                                    onClick={handleClick}
                             >
                                 Add
                             </button>

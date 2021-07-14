@@ -4,37 +4,30 @@ import {useDispatch, useSelector} from "react-redux";
 
 import './Item.css'
 import plug from './../../../../../assest/image/plug.png'
-import {addIdDeleteFilm, deleteFilm, loadClickDescriptionFilm, loadFilmPage} from "../../../../../store/actions";
+import {addIdDeleteFilm, loadFilmPage} from "../../../../../store/actions";
 
 
 const Item = (props) => {
     const dispatch = useDispatch();
-    const {adminMode,dataFilmPage} = useSelector((state) => state.videos);
+    const {adminMode, dataFilmPage} = useSelector((state) => state.videos);
     const [isHover, setHover] = useState(false);
     const [isHoverDelete, setHoverDelete] = useState(false);
 
-    const { poster_path, title, vote_average, release_date, id } = props.store;
+    const {poster_path, title, vote_average, release_date, id} = props.store;
     const poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
-
-   /* const handleClick = (id, e) => {
-        if (e.target.nodeName === 'A') {
-            return dispatch(loadClickDescriptionFilm(id))
-        }
-    };*/
 
     const handleClickDelete = (id) => {
         const idx = dataFilmPage.findIndex(el => el.id === id);
         let newArr = [
-            ...dataFilmPage.slice(0,idx),
+            ...dataFilmPage.slice(0, idx),
             ...dataFilmPage.slice(idx + 1)
         ];
-
         dispatch(loadFilmPage(newArr));
         dispatch(addIdDeleteFilm(id))
     };
 
     return (
-        <Link to={isHoverDelete ? '/': `/description/${id}`}
+        <Link to={isHoverDelete ? '/' : `/description/${id}`}
               className='itemMovie'
               id={id}
               onMouseOver={() => setHover(!isHover)}

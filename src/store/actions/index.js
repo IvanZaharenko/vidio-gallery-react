@@ -9,7 +9,7 @@ import {
     ADMIN_COME_IN,
     DELETE_FILM,
     ADD_NEW_USER,
-    ADD_ID_DELETE_FILM, GENRE_LOAD
+    ADD_ID_DELETE_FILM, GENRE_LOAD, ADD_NEW_FILM
 } from "../constans";
 
 import GalleryService from "./../../servises/videoApi-servis"
@@ -66,6 +66,11 @@ export const deleteFilm = value => ({
 
 export const addNewUser = value => ({
     type: ADD_NEW_USER,
+    payload: value
+});
+
+export const addNewFilm = value => ({
+    type: ADD_NEW_FILM,
     payload: value
 });
 
