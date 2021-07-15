@@ -33,7 +33,7 @@ const AddNewFilm = () => {
             formik.errors.VoteCount === undefined) {
 
             const newFilm = {
-                id: nanoid(5),
+                id: nanoid(20),
                 poster_path: null,
                 title: formik.values.title,
                 overview: formik.values.overview,
@@ -42,7 +42,7 @@ const AddNewFilm = () => {
                 genre: [],
                 vote_average: Number(formik.values.VoteAverage),
                 vote_count: Number(formik.values.VoteCount),
-            }
+            };
             dispatch(addNewFilm(newFilm));
             history.push('/');
 

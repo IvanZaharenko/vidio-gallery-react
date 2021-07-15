@@ -9,7 +9,9 @@ import {
     ADMIN_COME_IN,
     DELETE_FILM,
     ADD_NEW_USER,
-    ADD_ID_DELETE_FILM, GENRE_LOAD, ADD_NEW_FILM
+    ADD_ID_DELETE_FILM,
+    GENRE_LOAD,
+    ADD_NEW_FILM, CHANGE_NEW_FILM
 } from "../constans";
 
 import GalleryService from "./../../servises/videoApi-servis"
@@ -21,6 +23,10 @@ export const loadFilmPage = (value) => ({
 
 export const changeCurrentPage = (value) => ({
     type: CHANGE_CURRENT_PAGE,
+    payload: value
+});
+export const changeNewFilm = (value) => ({
+    type: CHANGE_NEW_FILM,
     payload: value
 });
 

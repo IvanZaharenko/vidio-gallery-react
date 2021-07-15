@@ -11,8 +11,9 @@ import {
     ADD_NEW_USER,
     ADD_ID_DELETE_FILM,
     GENRE_LOAD,
-    ADD_NEW_FILM
+    ADD_NEW_FILM, CHANGE_NEW_FILM
 } from "../constans";
+import {nanoid} from "nanoid";
 
 const initialState = {
     loaded: true,
@@ -22,7 +23,27 @@ const initialState = {
     dataFilmPage: [],
     dataGenre: [],
     dataDelFilm:[],
-    dataNewFilm:[{},{}],
+    dataNewFilm: [{
+        id: nanoid(20),
+        poster_path: null,
+        title: 'r',
+        overview: 'hh',
+        popularity: 1,
+        release_date: null,
+        genre: [],
+        vote_average: 232,
+        vote_count: 4
+    },{
+        id: nanoid(20),
+        poster_path: null,
+        title: 'r',
+        overview: 'hh',
+        popularity: 1,
+        release_date: null,
+        genre: [],
+        vote_average: 232,
+        vote_count: 4
+    }],
     aboutFilm: [],
     adminMode: true,
     activUser: null,
@@ -57,6 +78,12 @@ const videoReducer = (state = initialState, action) => {
             return {
                 ...state,
                 dataNewFilm: [...state.dataNewFilm, action.payload]
+            };
+
+        case CHANGE_NEW_FILM:
+            return {
+                ...state,
+                dataNewFilm: action.payload
             };
 
         case GENRE_LOAD:

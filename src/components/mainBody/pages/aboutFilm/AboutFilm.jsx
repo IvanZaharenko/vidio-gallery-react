@@ -2,28 +2,44 @@ import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
-import {addIdDeleteFilm, loadClickDescriptionFilm, loadFilmPage} from "../../../../store/actions";
+import {
+    addIdDeleteFilm,
+    loadClickDescriptionFilm,
+    loadedDescriptionFilm,
+    loadFilmPage
+} from "../../../../store/actions";
 import plug from './../../../../assest/image/plug.png'
 import Spinner from "../../../spinner/Spinner";
 import './aboutFilm.css'
 
 
 const AboutFilm = (props) => {
-    const {aboutFilm, loaded} = useSelector((state) => state.videos);
+    const {aboutFilm, loaded, dataNewFilm} = useSelector((state) => state.videos);
     const {idFilm} = props;
     const dispatch = useDispatch();
 
     const [load, setLoad] = useState(true);
+    const [loadApi, setLoadApi] = useState(true);
 
     useEffect(() => {
         dispatch(loadClickDescriptionFilm(idFilm));
+
+        /*  if (idFilm.length === 20) {
+              const idx = dataNewFilm.findIndex(el => el.id === idFilm);
+              let currentFilm = [
+                  ...dataNewFilm.slice(idx , idx+1)
+              ];
+              dispatch(loadedDescriptionFilm(currentFilm[0]));
+          } else {
+              dispatch(loadClickDescriptionFilm(idFilm));
+          }*/
     }, [idFilm]);
 
     setTimeout(() => {
         setLoad(false)
     }, 700);
 
-    return load ? <Spinner/> : <CreatePage aboutFilm={aboutFilm}/>
+    return load ? <Spinner/> : <CreatePage aboutFilm={ aboutFilm}/>
 };
 
 const CreatePage = (props) => {

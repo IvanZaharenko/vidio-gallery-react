@@ -4,12 +4,12 @@ import {useDispatch, useSelector} from "react-redux";
 
 import './Item.css'
 import plug from './../../../../../assest/image/plug.png'
-import {addIdDeleteFilm, loadFilmPage} from "../../../../../store/actions";
+import {addIdDeleteFilm, changeNewFilm, loadFilmPage} from "../../../../../store/actions";
 
 
 const Item = (props) => {
     const dispatch = useDispatch();
-    const {adminMode, dataFilmPage} = useSelector((state) => state.videos);
+    const {adminMode, dataFilmPage, dataNewFilm} = useSelector((state) => state.videos);
     const [isHover, setHover] = useState(false);
     const [isHoverDelete, setHoverDelete] = useState(false);
 
@@ -17,14 +17,25 @@ const Item = (props) => {
     const poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
 
     const handleClickDelete = (id) => {
-        const idx = dataFilmPage.findIndex(el => el.id === id);
-        let newArr = [
-            ...dataFilmPage.slice(0, idx),
-            ...dataFilmPage.slice(idx + 1)
-        ];
-        dispatch(loadFilmPage(newArr));
-        dispatch(addIdDeleteFilm(id))
+        if (typeof id === "number") {
+            const idx = dataFilmPage.findIndex(el => el.id === id);
+            let newArr = [
+                ...dataFilmPage.slice(0, idx),
+                ...dataFilmPage.slice(idx + 1)
+            ];
+            dispatch(loadFilmPage(newArr));
+            dispatch(addIdDeleteFilm(id))
+        } else {
+            const idx = dataNewFilm.findIndex(el => el.id === id);
+            let newArr = [
+                ...dataNewFilm.slice(0, idx),
+                ...dataNewFilm.slice(idx + 1)
+            ];
+            dispatch(changeNewFilm(newArr));
+            dispatch(addIdDeleteFilm(id))
+        }
     };
+
 
     return (
         <Link to={isHoverDelete ? '/' : `/description/${id}`}

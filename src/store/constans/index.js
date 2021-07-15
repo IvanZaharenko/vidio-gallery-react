@@ -11,6 +11,7 @@ export const ADD_NEW_USER = 'ADD_NEW_USER';
 export const ADD_ID_DELETE_FILM = 'ADD_ID_DELETE_FILM';
 export const GENRE_LOAD = 'GENRE_LOAD';
 export const ADD_NEW_FILM = 'ADD_NEW_FILM';
+export const CHANGE_NEW_FILM = 'CHANGE_NEW_FILM';
 
 
 
