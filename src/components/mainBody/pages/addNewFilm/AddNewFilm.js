@@ -1,19 +1,17 @@
-import React, { useState} from 'react'
-import {Form, useFormik, Field, ErrorMessage} from "formik";
+import React from 'react'
 import {useHistory} from "react-router-dom";
-import {nanoid} from "nanoid";
 import {useDispatch, useSelector} from "react-redux";
+import {useFormik} from "formik";
+import {nanoid} from "nanoid";
 
+import {addNewFilm} from "../../../../store/actions";
 import './addNewFilm.css'
-import {activateAdmin, addNewFilm, registrationNew, userComeIn} from "../../../../store/actions";
-
 
 const AddNewFilm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
     const {dataGenre} = useSelector((state) => state.videos);
-
 
     const initialValues = {
         title: '123',
@@ -48,57 +46,23 @@ const AddNewFilm = () => {
 
             console.log(newFilm)
         } else alert('No  correct value');
-
-
-
-        /*
-
-   /*  else {
-             dispatch(userComeIn(user[0].name));
-             if (user[0].name === 'Admin')  {
-                 dispatch(activateAdmin(true))
-             }
-         }*/
-
-
     };
 
     const onSubmit = (values, {resetForm}) => {
-
-
     };
-
-   /* const validationSchema = Yup.object({
-        title: Yup.string()
-            .test('len', 'Не менее 3 символов', val => val.length === 4)
-            .required('Заполните поле'),
-        /!*Overview: Yup.string()
-            .test('len', 'Не менее 5 символов', val => val.length === 4)
-            .required('Заполните поле'),
-        Popularity: Yup.string()
-            .test('len', 'Не менее  4 символов', val => val.length === 4)
-            .required('Заполните поле'),
-        date: Yup.string()
-            .required('Заполните поле'),
-        VoteAverage: Yup.string()
-            .max(10, 'до 10')
-            .required('Заполните поле'),
-        VoteCount: Yup.string()
-            .required('Заполните поле'),*!/
-    });*/
 
     const validate = values => {
         let errors = {};
 
         if (!values.title) {
             errors.title = 'Заполните поле'
-        } else if(values.title.length < 3) {
+        } else if (values.title.length < 3) {
             errors.title = 'Не менее 3 символов'
         }
 
         if (!values.overview) {
             errors.overview = 'Заполните поле'
-        } else if(values.overview.length <6) {
+        } else if (values.overview.length < 6) {
             errors.overview = 'Не менее 6 символов'
         }
 
@@ -119,6 +83,7 @@ const AddNewFilm = () => {
 
         return errors
     };
+
     const formik = useFormik({
         initialValues,
         onSubmit,

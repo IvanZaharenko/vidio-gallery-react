@@ -36,14 +36,12 @@ const Item = (props) => {
         }
     };
 
-
     return (
         <Link to={isHoverDelete ? '/' : `/description/${id}`}
               className='itemMovie'
               id={id}
               onMouseOver={() => setHover(!isHover)}
               onMouseOut={() => setHover(!isHover)}
-            /*  onClick={(e) =>  handleClick(id,e)}*/
         >
             <div>
                 <img src={`${poster_path ? poster : plug}`} alt="Постер фильма"/>

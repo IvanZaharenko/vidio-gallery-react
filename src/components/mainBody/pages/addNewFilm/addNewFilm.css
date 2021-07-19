@@ -12,13 +12,16 @@
     font-size: 20px;
     line-height: 32px;
 }
+
 .control_btn .clear-newFilm:hover {
     background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 53.12%, #EFECEC 100%);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25), 3px 3px 13px rgba(128, 128, 128, 0.25);
 }
-.marg20px{
+
+.marg20px {
     margin: 20px 0 0 0;
 }
+
 .addGenres {
     margin: 20px 0 0 0;
     height: 100px;

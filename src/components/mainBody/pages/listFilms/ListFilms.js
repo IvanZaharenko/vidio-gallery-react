@@ -1,5 +1,6 @@
-import React, {useEffect} from 'react'
-import {useDispatch, useSelector} from "react-redux";
+import React from 'react'
+import {useSelector} from "react-redux";
+
 import './ListFilms.css'
 import Item from "./item/Item";
 import {Pagination} from "../../pagination/pagination";
@@ -11,7 +12,7 @@ const ListFilms = () => {
     const createActualBasa = (dataFilm, dataDel, dataNew) => {
         if (dataNew.length > 0 && currentPageState === 1 && typeSort === 'vote_count.desc') {
             const basa = dataFilm.filter(item => !dataDel.includes(item.id));
-            return [...dataNew, ...basa.slice(0, - dataNew.length)]
+            return [...dataNew, ...basa.slice(0, -dataNew.length)]
 
         } else return dataFilm.filter(item => !dataDel.includes(item.id))
     };

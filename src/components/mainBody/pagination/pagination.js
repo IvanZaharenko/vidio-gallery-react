@@ -1,15 +1,12 @@
-import React, {useEffect} from 'react'
+import React from 'react'
+import {useDispatch, useSelector} from "react-redux";
 
 import './pagination.css'
-import {useDispatch, useSelector} from "react-redux";
-import {changeCurrentPage, loadChangeCurrentPage} from "../../../store/actions";
-
+import { loadChangeCurrentPage} from "../../../store/actions";
 
 export const Pagination = () => {
     const dispatch = useDispatch();
-
     const {currentPageState, typeSort} = useSelector((state) => state.videos);
-
 
     const [currentPage, setCurrentPage] = React.useState(currentPageState);
     let maxPages = 15;

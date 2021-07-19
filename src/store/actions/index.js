@@ -11,7 +11,8 @@ import {
     ADD_NEW_USER,
     ADD_ID_DELETE_FILM,
     GENRE_LOAD,
-    ADD_NEW_FILM, CHANGE_NEW_FILM
+    ADD_NEW_FILM,
+    CHANGE_NEW_FILM
 } from "../constans";
 
 import GalleryService from "./../../servises/videoApi-servis"
@@ -87,7 +88,6 @@ export const addIdDeleteFilm = value => ({
 
 export const loadFilms = (value) => (dispatch) => {
     const {currentPage, typeSort} = value;
-
     dispatch(changeLoad(true));
     GalleryService.getMovieList(currentPage, typeSort)
         .then((data) => dispatch(loadFilmPage(data)))
@@ -105,7 +105,6 @@ export const loadChangeSort = (value) => (dispatch) => {
 
 export const loadChangeCurrentPage = (value) => (dispatch) => {
     const {page, typeSort} = value;
-
     dispatch(changeCurrentPage(page));
     dispatch(changeLoad(true));
     GalleryService.getMovieList(page, typeSort)
@@ -115,7 +114,6 @@ export const loadChangeCurrentPage = (value) => (dispatch) => {
 
 export const loadClickDescriptionFilm = (value) => (dispatch) => {
     dispatch(changeLoad(true));
-
     GalleryService.getMovie(value)
         .then((data) => dispatch(loadedDescriptionFilm(data)))
         .then(() => dispatch(changeLoad(false)))
@@ -132,7 +130,6 @@ export const registrationNew = (value) => (dispatch) => {
 
 export const activateAdmin = (value) => (dispatch) => {
     dispatch(adminComeIn(value));
-
     GalleryService.getAllGenre()
         .then((data) => dispatch(genreLoad(data)));
 };

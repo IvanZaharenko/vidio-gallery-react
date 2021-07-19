@@ -1,11 +1,10 @@
 import React from 'react'
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 
 import logo from './../../assest/image/logo.png'
 import './Header.css'
-import {useDispatch, useSelector} from "react-redux";
 import {adminComeIn, userComeIn} from "../../store/actions";
-
 
 const Header = () => {
     const {activUser} = useSelector((state) => state.videos);
@@ -27,11 +26,11 @@ const Header = () => {
             </Link>
             <p className={activUser ? 'user_head visable' : 'user_head'}>{activUser}</p>
             <Link
-                to={activUser? "/" : "/login"}
+                to={activUser ? "/" : "/login"}
                 className="double-border-button"
                 onClick={handleClick}
             >
-                {activUser? 'Log Out' : 'Sign In / Sign Up'}
+                {activUser ? 'Log Out' : 'Sign In / Sign Up'}
             </Link>
         </header>
     )

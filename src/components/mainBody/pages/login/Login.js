@@ -1,36 +1,36 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {useFormik} from "formik";
 import {useHistory, Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
 import './Login.css'
-import {activateAdmin,  userComeIn} from "../../../../store/actions";
+import {activateAdmin, userComeIn} from "../../../../store/actions";
 
 const Login = () => {
     const {basaUser} = useSelector((state) => state.videos);
     const dispatch = useDispatch();
     const history = useHistory();
-    const [authorization, setAuthorization] = useState(false);
 
     const initialValues = {
         comeInEmailForm: '',
         comeInPasswordForm: '',
     };
-    const onSubmit = values => {
 
+    const onSubmit = values => {
     };
+
     const validate = values => {
         let errors = {};
 
         if (!values.comeInEmailForm) {
             errors.comeInEmailForm = 'Заполните поле'
         } else if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            .test(values.comeInEmailForm)){
+            .test(values.comeInEmailForm)) {
             errors.comeInEmailForm = 'Нверный формат поля'
         }
         if (!values.comeInPasswordForm) {
             errors.comeInPasswordForm = 'Заполните поле'
-        } else if (values.comeInPasswordForm.length <= 3){
+        } else if (values.comeInPasswordForm.length <= 3) {
             errors.comeInPasswordForm = 'Пароль слишком короткий'
         }
         return errors
@@ -48,20 +48,19 @@ const Login = () => {
 
             if (user.length === 0 || user[0].passwordUser !== Number(formik.values.comeInPasswordForm)) {
                 alert('No  correct value');
-                formik.values.comeInPasswordForm='';
-                formik.values.comeInEmailForm=''
+                formik.values.comeInPasswordForm = '';
+                formik.values.comeInEmailForm = ''
             } else {
-                setAuthorization(true);
                 dispatch(userComeIn(user[0].name));
                 history.push('/');
-                if (user[0].name === 'Admin')  {
+                if (user[0].name === 'Admin') {
                     dispatch(activateAdmin(true))
                 }
             }
         }
     };
 
-      return (
+    return (
         <div className='container_come-in'>
             <div className='formWrapper'>
                 <form
@@ -108,13 +107,13 @@ const Login = () => {
                     </div>
 
                     <div className='control_btn'>
-                            <button
-                                type='submit'
-                                className='form_button_come_in upComeIn'
-                                onClick={handleClick}
-                            >
-                                Sign
-                            </button>
+                        <button
+                            type='submit'
+                            className='form_button_come_in upComeIn'
+                            onClick={handleClick}
+                        >
+                            Sign
+                        </button>
                         <Link to='registration'>
                             <button type='button' className='registration'>Registration</button>
                         </Link>

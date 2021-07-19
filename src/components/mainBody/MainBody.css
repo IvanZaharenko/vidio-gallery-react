@@ -4,6 +4,7 @@ main {
     background-color: #323435;
     z-index: 0;
 }
+
 .floating-button {
     text-decoration: none;
     cursor: pointer;
@@ -18,6 +19,7 @@ main {
     background-color: #22ae95;
     transition: 0.3s;
 }
+
 .floating-button:hover {
     background: #2EE59D;
     box-shadow: 0 15px 20px rgba(46, 229, 157, 0.4);

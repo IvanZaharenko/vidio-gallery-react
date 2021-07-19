@@ -1,4 +1,4 @@
-.itemMovie{
+.itemMovie {
     width: 200px;
     height: 319px;
     text-decoration: none;
@@ -9,9 +9,11 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
 .itemMovie:hover {
     background-color: rgba(0, 0, 0, 0.5);
 }
+
 .itemMovie img {
     position: absolute;
     top: 0;
@@ -20,6 +22,7 @@
     width: 200px;
     height: 319px;
 }
+
 .titleItem {
     margin: 10px 0;
     text-align: center;
@@ -31,6 +34,7 @@
     -ms-user-select: none;
     user-select: none;
 }
+
 .voteItem {
     position: absolute;
     top: calc(100% - 26px);
@@ -46,6 +50,7 @@
     line-height: 26px;
     visibility: hidden;
 }
+
 .releaseItem {
     margin: 0;
     font-size: 18px;
@@ -55,9 +60,11 @@
     position: absolute;
     top: calc(100% + 5px);
 }
-.visable{
+
+.visable {
     visibility: unset !important;
 }
+
 .deleteFilm {
     position: absolute;
     font-size: 43px;

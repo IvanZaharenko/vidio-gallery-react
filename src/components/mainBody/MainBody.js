@@ -21,10 +21,9 @@ const NewFilm = () => {
 const MainBody = () => {
     const {loaded, adminMode} = useSelector((state) => state.videos);
 
-
     return (<>
             <Sort/>
-           {adminMode ? <NewFilm/> : null}
+            {adminMode ? <NewFilm/> : null}
             {loaded ? <Spinner/> : <ListFilms/>}
         </>
     )

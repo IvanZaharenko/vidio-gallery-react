@@ -2,6 +2,7 @@
     width: 445px;
     margin: 0 auto 0 auto;
 }
+
 .formWrapper h2 {
     color: #eee;
     font-weight: 500;
@@ -11,6 +12,7 @@
     margin-top: 20px;
     margin-bottom: 0;
 }
+
 .control_btn .form_button_come_in {
     height: 32px;
     width: 158px;
@@ -21,10 +23,12 @@
     box-shadow: 3px 3px 13px rgba(0, 0, 0, 0.25);
     border-radius: 58px;
 }
+
 .control_btn .form_button_come_in:hover {
     background: linear-gradient(180deg, #FFEEBC 0%, #FFE69F 36.46%, #FFCF48 68.23%, #FFC317 100%);
     box-shadow: 3px 3px 13px rgba(0, 0, 0, 0.25);
 }
+
 .control_btn .registration {
     height: 32px;
     width: 158px;
@@ -39,10 +43,12 @@
     font-size: 20px;
     line-height: 32px;
 }
+
 .control_btn .registration:hover {
     background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 53.12%, #EFECEC 100%);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25), 3px 3px 13px rgba(128, 128, 128, 0.25);
 }
-.errReg{
+
+.errReg {
     color: red;
 }

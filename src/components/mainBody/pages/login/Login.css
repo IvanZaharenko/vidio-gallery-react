@@ -1,9 +1,10 @@
-.container_come-in{
+.container_come-in {
     width: 445px;
     margin: 0 auto 0 auto;
 }
-.form_Style{
-    margin: 0px 0 0 0;
+
+.form_Style {
+    margin: 0 0 0 0;
     height: 40px;
     width: 445px;
     background: #FFFFFF;
@@ -12,16 +13,18 @@
     border-radius: 2px;
     padding: 10px 17px 10px 16px;
 }
-.form_Style_comeIn{
-     margin: 20px 0 0 0;
-     height: 40px;
-     width: 445px;
-     background: #FFFFFF;
-     border: 1px solid #D6D6D6;
-     box-sizing: border-box;
-     border-radius: 2px;
-     padding: 10px 17px 10px 16px;
- }
+
+.form_Style_comeIn {
+    margin: 20px 0 0 0;
+    height: 40px;
+    width: 445px;
+    background: #FFFFFF;
+    border: 1px solid #D6D6D6;
+    box-sizing: border-box;
+    border-radius: 2px;
+    padding: 10px 17px 10px 16px;
+}
+
 .controlLabel {
     font-style: normal;
     font-weight: normal;
@@ -31,6 +34,7 @@
     padding: 10px 0 0 0;
     display: block;
 }
+
 .control_btn {
     display: flex;
     flex-direction: row;
@@ -52,14 +56,17 @@
     font-size: 20px;
     line-height: 32px;
 }
+
 .registration:hover {
-     background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 53.12%, #EFECEC 100%);
-     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25), 3px 3px 13px rgba(128, 128, 128, 0.25);
- }
-.err{
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 53.12%, #EFECEC 100%);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25), 3px 3px 13px rgba(128, 128, 128, 0.25);
+}
+
+.err {
     color: red;
     padding: 5px 0 0 0;
 }
+
 .form_button_come_in {
     height: 32px;
     width: 158px;
@@ -72,9 +79,9 @@
 }
 
 .form_button_come_in:hover {
-     background: linear-gradient(180deg, #FFEEBC 0%, #FFE69F 36.46%, #FFCF48 68.23%, #FFC317 100%);
-     box-shadow: 3px 3px 13px rgba(0, 0, 0, 0.25);
- }
+    background: linear-gradient(180deg, #FFEEBC 0%, #FFE69F 36.46%, #FFCF48 68.23%, #FFC317 100%);
+    box-shadow: 3px 3px 13px rgba(0, 0, 0, 0.25);
+}
 
 .form_button_come_in span {
     font-style: normal;
@@ -84,7 +91,7 @@
     margin: auto;
 }
 
-.clear-newFilm{
+.clear-newFilm {
     height: 32px;
     width: 158px;
     border: 1px none white;
@@ -98,10 +105,12 @@
     font-size: 20px;
     line-height: 32px;
 }
+
 .clear-newFilm:hover {
-     background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 53.12%, #EFECEC 100%);
-     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25), 3px 3px 13px rgba(128, 128, 128, 0.25);
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 53.12%, #EFECEC 100%);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25), 3px 3px 13px rgba(128, 128, 128, 0.25);
 }
+
 .addFilm-admin {
     height: 32px;
     width: 158px;
@@ -112,10 +121,12 @@
     box-shadow: 3px 3px 13px rgba(0, 0, 0, 0.25);
     border-radius: 58px;
 }
+
 .addFilm-admin:hover {
-     background: linear-gradient(180deg, #FFEEBC 0%, #FFE69F 36.46%, #FFCF48 68.23%, #FFC317 100%);
-     box-shadow: 3px 3px 13px rgba(0, 0, 0, 0.25);
- }
+    background: linear-gradient(180deg, #FFEEBC 0%, #FFE69F 36.46%, #FFCF48 68.23%, #FFC317 100%);
+    box-shadow: 3px 3px 13px rgba(0, 0, 0, 0.25);
+}
+
 .addFilm-admin span {
     font-style: normal;
     font-weight: 500;
@@ -123,6 +134,7 @@
     line-height: 32px;
     margin: auto;
 }
+
 .formWrapper h2 {
     color: #eee;
     font-weight: 500;
@@ -132,14 +144,16 @@
     margin-top: 20px;
     margin-bottom: 0;
 }
-#addOverview{
+
+#addOverview {
     resize: vertical;
     max-height: 100px;
     min-height: 40px;
 }
-#addGenres{
+
+#addGenres {
     margin: 20px 0 0 0;
-    height:100px;
+    height: 100px;
     width: 445px;
     background: #FFFFFF;
     border: 1px solid #D6D6D6;
