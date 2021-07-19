@@ -112,7 +112,7 @@ export const loadChangeCurrentPage = (value) => (dispatch) => {
         .then(() => dispatch(changeLoad(false)))
 };
 
-export const loadClickDescriptionFilm = (value) => (dispatch) => {
+/*export const loadClickDescriptionFilm = (value) => (dispatch) => {
     dispatch(changeLoad(true));
     GalleryService.getMovie(value)
         .then((data) => dispatch(loadedDescriptionFilm(data)))
@@ -121,7 +121,7 @@ export const loadClickDescriptionFilm = (value) => (dispatch) => {
             dispatch(apiErr(true));
             dispatch(changeLoad(false));
         })
-};
+};*/
 
 export const registrationNew = (value) => (dispatch) => {
     dispatch(addNewUser(value));

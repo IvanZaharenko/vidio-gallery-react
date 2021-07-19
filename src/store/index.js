@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
 const store = createStore(
     rootReducer,
     compose(
-        applyMiddleware(logger, thunk)
+        applyMiddleware(logger, thunk),
        // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 );

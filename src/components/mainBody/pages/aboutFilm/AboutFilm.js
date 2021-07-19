@@ -3,13 +3,12 @@ import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
 import {
-    addIdDeleteFilm,
-    loadClickDescriptionFilm,
-    loadFilmPage
+    addIdDeleteFilm, apiErr, loadedDescriptionFilm, loadFilmPage
 } from "../../../../store/actions";
 import plug from './../../../../assest/image/plug.png'
 import Spinner from "../../../spinner/Spinner";
 import './aboutFilm.css'
+import GalleryService from "../../../../servises/videoApi-servis";
 
 
 const AboutFilm = (props) => {
@@ -20,12 +19,13 @@ const AboutFilm = (props) => {
     const [load, setLoad] = useState(true);
 
     useEffect(() => {
-        dispatch(loadClickDescriptionFilm(idFilm));
+        GalleryService.getMovie(idFilm)
+            .then((data) => dispatch(loadedDescriptionFilm(data)))
+            .then(() => setLoad(false)/* dispatch(changeLoad(false))*/)
+            .catch(() => {
+                dispatch(apiErr(true));
+            });
     }, [idFilm]);
-
-    setTimeout(() => {
-        setLoad(false)
-    }, 700);
 
     return load ? <Spinner/> : <CreatePage aboutFilm={aboutFilm}/>
 };

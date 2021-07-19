@@ -14,13 +14,13 @@ const AddNewFilm = () => {
     const {dataGenre} = useSelector((state) => state.videos);
 
     const initialValues = {
-        title: '123',
-        overview: '123456',
-        Popularity: '3',
+        title: '',
+        overview: '',
+        Popularity: '',
         date: '',
         genre: '',
-        VoteAverage: '4',
-        VoteCount: '5',
+        VoteAverage: '',
+        VoteCount: '',
     };
 
     const handleClick = () => {
