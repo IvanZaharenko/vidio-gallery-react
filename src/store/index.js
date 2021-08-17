@@ -1,6 +1,6 @@
 import {createStore, combineReducers, compose, applyMiddleware} from "redux";
 import logger from "./middleware/logger"
-import videoReducer from "./redusers/reducer"
+import videoReducer from "./reducer/reducer"
 import thunk from "redux-thunk"
 
 const rootReducer = combineReducers({

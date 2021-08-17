@@ -6,7 +6,7 @@ import {
     addIdDeleteFilm, apiErr, loadedDescriptionFilm, loadFilmPage
 } from "../../../../store/actions";
 import plug from './../../../../assest/image/plug.png'
-import Spinner from "../../../spinner/Spinner";
+import Spinner from "../../../spinner/spinner";
 import './aboutFilm.css'
 import GalleryService from "../../../../servises/videoApi-servis";
 
@@ -30,15 +30,15 @@ const AboutFilm = (props) => {
     return load ? <Spinner/> : <CreatePage aboutFilm={aboutFilm}/>
 };
 
-const CreatePage = (props) => {
+const CreatePage = ({aboutFilm:{poster_path, genres, id, overview, release_date, title, tagline, vote_average, vote_count}}) => {
     const {adminMode, dataFilmPage, activUser} = useSelector((state) => state.videos);
     const dispatch = useDispatch();
-
-    const {poster_path, genres, id, overview, release_date, title, tagline, vote_average, vote_count} = props.aboutFilm;
     const [count, setCount] = useState(vote_count);
 
     const poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
     const actualGenres = genres.map((genre) => genre.name);
+    const displayGenres = ` ${actualGenres.length !== 0 ? actualGenres.join(', ') + '.' : null}`;
+    const dataRelease = ` ${release_date ? release_date.split('-').reverse().join('/') : null}`;
 
     const handleClickDel = (id) => {
         const idx = dataFilmPage.findIndex(el => el.id === id);
@@ -61,13 +61,17 @@ const CreatePage = (props) => {
             <div className='about-film_info'>
                 <h2 className='about_title'> {title}</h2>
                 <p className='about_miniOverview'> {tagline}</p>
-                <p className='about_release'> Год выпуска: <span
-                    className='white_color'>{release_date ? release_date.split('-').reverse().join('/') : null}</span>
+                <p className='about_release'> Год выпуска:
+                    <span className='white_color'>{dataRelease}</span>
                 </p>
-                <p className='about_genres'> Жанры: <span
-                    className='white_color'>{actualGenres.length !== 0 ? actualGenres.join(', ') + '.' : ''}</span></p>
-                <p className='about_vote'> Рейтинг: <span className='white_color'>{vote_average}</span></p>
-                <p className='about-vote_count'> Понравилось: <span className='white_color'>{count}</span> людям.
+                <p className='about_genres'> Жанры:
+                    <span className='white_color'>{displayGenres}</span>
+                </p>
+                <p className='about_vote'> Рейтинг:
+                    <span className='white_color'>{vote_average}</span>
+                </p>
+                <p className='about-vote_count'> Понравилось:
+                    <span className='white_color'>{count}</span> людям.
                     {activUser !== null && adminMode !== true ?
                         <p>
                             <input name='toggle-heart' id="toggle-heart" type="checkbox"/>

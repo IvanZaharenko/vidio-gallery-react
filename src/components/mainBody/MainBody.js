@@ -4,26 +4,17 @@ import {useSelector} from "react-redux";
 
 import './MainBody.css'
 
-import {Sort} from "./sort/Sort";
+import {Sort} from "./sort/sort";
 import ListFilms from "./pages/listFilms/ListFilms";
-import Spinner from "../spinner/Spinner";
-
-const NewFilm = () => {
-    return (
-        <Link to='/newFilm'>
-            <div className='addFilm floating-button'>
-                +
-            </div>
-        </Link>
-    )
-};
+import Button_newFilm from "./button_newFilm/button_newFilm"
+import Spinner from "../spinner/spinner";
 
 const MainBody = () => {
     const {loaded, adminMode} = useSelector((state) => state.videos);
 
     return (<>
             <Sort/>
-            {adminMode ? <NewFilm/> : null}
+            {adminMode ? <Button_newFilm/> : null}
             {loaded ? <Spinner/> : <ListFilms/>}
         </>
     )

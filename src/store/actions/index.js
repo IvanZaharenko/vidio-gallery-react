@@ -17,21 +17,21 @@ import {
 
 import GalleryService from "./../../servises/videoApi-servis"
 
-export const loadFilmPage = (value) => ({
+export const loadFilmPage = value => ({
     type: FILM_LOADED,
     payload: value
 });
 
-export const changeCurrentPage = (value) => ({
+export const changeCurrentPage = value => ({
     type: CHANGE_CURRENT_PAGE,
     payload: value
 });
-export const changeNewFilm = (value) => ({
+export const changeNewFilm = value => ({
     type: CHANGE_NEW_FILM,
     payload: value
 });
 
-export const loadedDescriptionFilm = (value) => ({
+export const loadedDescriptionFilm = value => ({
     type: ABOUT_FILM_LOADED,
     payload: value
 });
@@ -86,7 +86,7 @@ export const addIdDeleteFilm = value => ({
     payload: value
 });
 
-export const loadFilms = (value) => (dispatch) => {
+export const loadFilms = value => dispatch => {
     const {currentPage, typeSort} = value;
     dispatch(changeLoad(true));
     GalleryService.getMovieList(currentPage, typeSort)
@@ -94,7 +94,7 @@ export const loadFilms = (value) => (dispatch) => {
         .then(() => dispatch(changeLoad(false)))
 };
 
-export const loadChangeSort = (value) => (dispatch) => {
+export const loadChangeSort = value => dispatch => {
     dispatch(changeSort(value));
     dispatch(changeCurrentPage(1));
     dispatch(changeLoad(true));
@@ -103,7 +103,7 @@ export const loadChangeSort = (value) => (dispatch) => {
         .then(() => dispatch(changeLoad(false)))
 };
 
-export const loadChangeCurrentPage = (value) => (dispatch) => {
+export const loadChangeCurrentPage = value => dispatch => {
     const {page, typeSort} = value;
     dispatch(changeCurrentPage(page));
     dispatch(changeLoad(true));
@@ -112,23 +112,12 @@ export const loadChangeCurrentPage = (value) => (dispatch) => {
         .then(() => dispatch(changeLoad(false)))
 };
 
-/*export const loadClickDescriptionFilm = (value) => (dispatch) => {
-    dispatch(changeLoad(true));
-    GalleryService.getMovie(value)
-        .then((data) => dispatch(loadedDescriptionFilm(data)))
-        .then(() => dispatch(changeLoad(false)))
-        .catch(() => {
-            dispatch(apiErr(true));
-            dispatch(changeLoad(false));
-        })
-};*/
-
-export const registrationNew = (value) => (dispatch) => {
+export const registrationNew = value => dispatch => {
     dispatch(addNewUser(value));
     dispatch(userComeIn(value.name))
 };
 
-export const activateAdmin = (value) => (dispatch) => {
+export const activateAdmin = value => dispatch => {
     dispatch(adminComeIn(value));
     GalleryService.getAllGenre()
         .then((data) => dispatch(genreLoad(data)));
