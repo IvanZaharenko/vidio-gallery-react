@@ -10,11 +10,21 @@ import {addIdDeleteFilm, changeNewFilm, loadFilmPage} from "../../../../../store
 const Item = (props) => {
     const dispatch = useDispatch();
     const {adminMode, dataFilmPage, dataNewFilm} = useSelector((state) => state.videos);
+    
     const [isHover, setHover] = useState(false);
     const [isHoverDelete, setHoverDelete] = useState(false);
-
     const {poster_path, title, vote_average, release_date, id} = props.store;
+
     const poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
+    const posterBody = `${poster_path ? poster : plug}`;
+
+    const classVoteItem = `${isHover ? 'voteItem visable' : 'voteItem '}`;
+    const voteItemBody = vote_average ? vote_average : 0 ;
+
+    const classReleaseItem = `${isHover ? 'releaseItem visable' : 'releaseItem '}`;
+    const releaseItemBody = release_date ? release_date.split('-').reverse().join('/') : null;
+
+    const classDeleteFilm = `${isHover ? 'deleteFilm visable' : 'deleteFilm'}`;
 
     const handleClickDelete = (id) => {
         if (typeof id === "number") {
@@ -44,12 +54,12 @@ const Item = (props) => {
               onMouseOut={() => setHover(!isHover)}
         >
             <div>
-                <img src={`${poster_path ? poster : plug}`} alt="Постер фильма"/>
+                <img src={posterBody} alt="Постер фильма"/>
                 <p className='titleItem'>{title}</p>
-                <p className={`${isHover ? 'voteItem visable' : 'voteItem '}`}>{vote_average ? vote_average : 0}</p>
-                <p className={`${isHover ? 'releaseItem visable' : 'releaseItem '}`}>{release_date ? release_date.split('-').reverse().join('/') : null}</p>
+                <p className={classVoteItem}>{voteItemBody}</p>
+                <p className={classReleaseItem}>{releaseItemBody}</p>
                 {adminMode ? <span
-                    className={`${isHover ? 'deleteFilm visable' : 'deleteFilm'}`}
+                    className={classDeleteFilm}
                     onClick={(e) => handleClickDelete(id)}
                     onMouseOver={() => setHoverDelete(!isHoverDelete)}
                     onMouseOut={() => setHoverDelete(!isHoverDelete)}

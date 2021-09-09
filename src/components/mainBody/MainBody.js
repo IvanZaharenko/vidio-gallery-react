@@ -1,20 +1,19 @@
 import React from 'react'
-import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 
 import './MainBody.css'
 
 import {Sort} from "./sort/sort";
 import ListFilms from "./pages/listFilms/ListFilms";
-import Button_newFilm from "./button_newFilm/button_newFilm"
 import Spinner from "../spinner/spinner";
+import ButtonNewFilm from "./button_newFilm/button_newFilm";
 
 const MainBody = () => {
     const {loaded, adminMode} = useSelector((state) => state.videos);
 
     return (<>
             <Sort/>
-            {adminMode ? <Button_newFilm/> : null}
+            {adminMode ? <ButtonNewFilm/> : null}
             {loaded ? <Spinner/> : <ListFilms/>}
         </>
     )

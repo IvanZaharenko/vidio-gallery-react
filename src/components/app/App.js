@@ -36,7 +36,6 @@ const App = () => {
                             const {filmId} = match.params;
                             return apiError ? <Error/> : <AboutFilm idFilm={filmId}/>
                         }}>
-
                         </Route>
 
                         <Route path="/login" exact>

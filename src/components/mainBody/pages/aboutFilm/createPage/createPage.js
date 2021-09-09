@@ -1,44 +1,22 @@
-import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import React from "react";
+import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {addIdDeleteFilm, loadFilmPage} from "../../../../../store/actions";
+import {Link} from "react-router-dom";
 
-import {
-    addIdDeleteFilm, apiErr, loadedDescriptionFilm, loadFilmPage
-} from "../../../../store/actions";
-import Spinner from "../../../spinner/spinner";
-import './aboutFilm.css'
-import GalleryService from "../../../../servises/videoApi-servis";
-import CreatePage from "./createPage/createPage";
+import plug from "../../../../../assest/image/plug.png";
 
-
-const AboutFilm = (props) => {
-    const {aboutFilm} = useSelector((state) => state.videos);
-    const {idFilm} = props;
-    const dispatch = useDispatch();
-
-    const [load, setLoad] = useState(true);
-
-    useEffect(() => {
-        GalleryService.getMovie(idFilm)
-            .then((data) => dispatch(loadedDescriptionFilm(data)))
-            .then(() => setLoad(false))
-            .catch(() => {
-                dispatch(apiErr(true));
-            });
-    }, [idFilm]);
-
-    return load ? <Spinner/> : <CreatePage aboutFilm={aboutFilm}/>
-};
-/*
 const CreatePage = ({aboutFilm:{poster_path, genres, id, overview, release_date, title, tagline, vote_average, vote_count}}) => {
     const {adminMode, dataFilmPage, activUser} = useSelector((state) => state.videos);
     const dispatch = useDispatch();
     const [count, setCount] = useState(vote_count);
 
     const poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
+    const posterBody = `${poster_path ? poster : plug}`;
+
     const actualGenres = genres.map((genre) => genre.name);
-    const displayGenres = ` ${actualGenres.length !== 0 ? actualGenres.join(', ') + '.' : null}`;
-    const dataRelease = ` ${release_date ? release_date.split('-').reverse().join('/') : null}`;
+    const displayGenresBody = ` ${actualGenres.length !== 0 ? actualGenres.join(', ') + '.' : null}`;
+    const dataReleaseBody = ` ${release_date ? release_date.split('-').reverse().join('/') : null}`;
 
     const handleClickDel = (id) => {
         const idx = dataFilmPage.findIndex(el => el.id === id);
@@ -53,19 +31,20 @@ const CreatePage = ({aboutFilm:{poster_path, genres, id, overview, release_date,
     return (
         <article id={id} className='containerAboutFilm'>
             <div className='about-film_poster'>
-                <img src={`${poster_path ? poster : plug}`} alt='Постер фильма'/>
+                <img src={posterBody} alt='Постер фильма'/>
                 {adminMode ?
                     <Link className='deleteFilm_about' to={'/'} onClick={e => handleClickDel(id)}
                     >☒</Link> : null}
             </div>
+
             <div className='about-film_info'>
                 <h2 className='about_title'> {title}</h2>
                 <p className='about_miniOverview'> {tagline}</p>
                 <p className='about_release'> Год выпуска:
-                    <span className='white_color'>{dataRelease}</span>
+                    <span className='white_color'>{dataReleaseBody}</span>
                 </p>
                 <p className='about_genres'> Жанры:
-                    <span className='white_color'>{displayGenres}</span>
+                    <span className='white_color'>{displayGenresBody}</span>
                 </p>
                 <p className='about_vote'> Рейтинг:
                     <span className='white_color'>{vote_average}</span>
@@ -89,9 +68,5 @@ const CreatePage = ({aboutFilm:{poster_path, genres, id, overview, release_date,
             </div>
         </article>
     )
-};*/
-export default AboutFilm
-
-
-
-
+};
+export default CreatePage

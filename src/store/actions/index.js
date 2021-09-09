@@ -41,17 +41,17 @@ export const changeSort = value => ({
     payload: value
 });
 
-export const changeLoad = (value) => ({
+export const changeLoad = value => ({
     type: CHANGE_LOAD,
     payload: value
 });
 
-export const apiErr = (value) => ({
+export const apiErr = value => ({
     type: API_ERROR,
     payload: value
 });
 
-export const genreLoad = (value) => ({
+export const genreLoad = value => ({
     type: GENRE_LOAD,
     payload: value
 });

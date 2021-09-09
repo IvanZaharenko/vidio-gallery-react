@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import React from "react";
 
-const Button_newFilm = () => {
+const ButtonNewFilm = () => {
     return (
         <Link to='/newFilm'>
             <div className='addFilm floating-button'>
@@ -10,4 +10,4 @@ const Button_newFilm = () => {
         </Link>
     )
 };
-export default Button_newFilm
+export default ButtonNewFilm
